@@ -5,6 +5,7 @@ const Timer = () => {
   const [hoursLeft, setHoursLeft] = useState(0)
   const [minutesLeft, setMinutesLeft] = useState(0)
   const [secondsLeft, setSecondsLeft] = useState(0)
+  const [isReleased, setIsReleased] = useState(false)
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -23,9 +24,16 @@ const Timer = () => {
       setHoursLeft(hours)
       setMinutesLeft(minutes)
       setSecondsLeft(seconds)
+      if (days === 0 && hours === 0 && minutes === 0 && seconds === 0) {
+        setIsReleased(true)
+      }
     }, 1000)
     return () => clearInterval(interval)
   }, [])
+
+  if (isReleased) {
+    return <h1 className="its-out">ITS OUT.</h1>
+  }
 
   return (
     <section>
@@ -38,19 +46,19 @@ const Timer = () => {
           </div>
         </div>
         <div className="hours">
-          <h3>Hours</h3>
+          <h3>Hrs</h3>
           <div className="box">
             <h4>{hoursLeft}</h4>
           </div>
         </div>
         <div className="minutes">
-          <h3>Minutes</h3>
+          <h3>Mins</h3>
           <div className="box">
             <h4>{minutesLeft}</h4>
           </div>
         </div>
         <div className="seconds">
-          <h3>Seconds</h3>
+          <h3>Secs</h3>
           <div className="box">
             <h4>{secondsLeft}</h4>
           </div>

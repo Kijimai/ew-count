@@ -39,14 +39,30 @@ section {
   align-items: center;
 }
 
+section h2 {
+  font-size: 5rem;
+}
+
 .timer-container {
+  text-align: center;
   gap: 2rem;
 }
 
+.timer-container > * {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 section .box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  line-height: 2;
   background-color: #fff;
-  max-width: 8rem;
-  text-align: center;
+  width: 8rem;
+  user-select: none;
 }
 
 .timer-container h3 {
@@ -56,4 +72,10 @@ section .box {
 .timer-container h4 {
   font-size: 4rem;
   color: #000;
+}
+
+.its-out {
+  user-select: none;
+  font-size: 10rem;
+  color: #fff;
 }
