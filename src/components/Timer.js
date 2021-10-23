@@ -4,32 +4,47 @@ const Timer = () => {
   const [daysLeft, setDaysLeft] = useState(0)
   const [hoursLeft, setHoursLeft] = useState(0)
   const [minutesLeft, setMinutesLeft] = useState(0)
-  const [secondsLeft, setSecondsLeft] = useState(0)
+  const [secondsLeft, setSecondsLeft] = useState(1)
   const [isReleased, setIsReleased] = useState(false)
+
+  const checkTime = () => {
+    let countDownDate = new Date("Nov 19, 2021 00:00:00").getTime()
+    let now = new Date().getTime()
+    let timeleft = countDownDate - now
+
+    let days = Math.floor(timeleft / (1000 * 60 * 60 * 24))
+    let hours = Math.floor(
+      (timeleft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+    )
+    let minutes = Math.floor((timeleft % (1000 * 60 * 60)) / (1000 * 60))
+    let seconds = Math.floor((timeleft % (1000 * 60)) / 1000)
+
+    setDaysLeft(days)
+    setHoursLeft(hours)
+    setMinutesLeft(minutes)
+    setSecondsLeft(seconds)
+  }
 
   useEffect(() => {
     const interval = setInterval(() => {
-      let countDownDate = new Date("Nov 19, 2021 00:00:00").getTime()
-      let now = new Date().getTime()
-      let timeleft = countDownDate - now
-
-      let days = Math.floor(timeleft / (1000 * 60 * 60 * 24))
-      let hours = Math.floor(
-        (timeleft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
-      )
-      let minutes = Math.floor((timeleft % (1000 * 60 * 60)) / (1000 * 60))
-      let seconds = Math.floor((timeleft % (1000 * 60)) / 1000)
-
-      setDaysLeft(days)
-      setHoursLeft(hours)
-      setMinutesLeft(minutes)
-      setSecondsLeft(seconds)
-      if (days === 0 && hours === 0 && minutes === 0 && seconds === 0) {
-        setIsReleased(true)
-      }
+      checkTime()
     }, 1000)
-    return () => clearInterval(interval)
-  }, [])
+    if (isReleased) {
+      return () => clearInterval(interval)
+    }
+  }, [isReleased])
+
+  useEffect(() => {
+    if (
+      daysLeft <= 0 &&
+      hoursLeft <= 0 &&
+      minutesLeft <= 0 &&
+      secondsLeft <= 0
+    ) {
+      return setIsReleased(true)
+    }
+    return setIsReleased(false)
+  }, [daysLeft, hoursLeft, minutesLeft, secondsLeft])
 
   if (isReleased) {
     return <h1 className="its-out">ITS OUT.</h1>
@@ -69,3 +84,7 @@ const Timer = () => {
 }
 
 export default Timer
+
+// background: center / cover no-repeat
+// linear-gradient(to bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.9)),
+// url("./images/wall1.jpg");

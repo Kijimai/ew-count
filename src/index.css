@@ -19,9 +19,15 @@ main {
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background: center / cover no-repeat
-      linear-gradient(to bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.9)),
-    url("./images/wall1.jpg");
+  background-image: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.4),
+      rgba(0, 0, 0, 0.9)
+    ),
+    url("./images/wall5.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
 }
 
 /* Timer container */
@@ -32,6 +38,9 @@ section,
 }
 
 section {
+  text-align: center;
+  min-width: 35rem;
+  margin: 0 5rem;
   padding: 5rem 10rem;
   background-color: rgba(0, 0, 0, 0.5);
   color: #fff;
@@ -44,6 +53,9 @@ section h2 {
 }
 
 .timer-container {
+  margin-top: 2rem;
+  flex-wrap: wrap;
+  justify-content: center;
   text-align: center;
   gap: 2rem;
 }
@@ -78,4 +90,19 @@ section .box {
   user-select: none;
   font-size: 10rem;
   color: #fff;
+}
+
+@media screen and (max-width: 768px) {
+  section {
+    text-align: center;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
