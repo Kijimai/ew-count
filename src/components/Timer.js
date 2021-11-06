@@ -8,7 +8,7 @@ const Timer = () => {
   const [isReleased, setIsReleased] = useState(false)
 
   const checkTime = () => {
-    let countDownDate = new Date("Nov 19, 2021 00:00:00").getTime()
+    let countDownDate = new Date("Dec 3, 2021 00:00:00").getTime()
     let now = new Date().getTime()
     let timeleft = countDownDate - now
 
